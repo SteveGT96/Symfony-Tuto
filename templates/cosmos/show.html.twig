@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block title %} Activité N {{ article.id }} {% endblock %}
+{% block body %}
+    <section class="article">
+        <h2> {{ article.title }} </h2>
+        <div class="metadata">
+            <p>
+                Ajoutée le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt | date('H:i') }} dans la catégorie {{ article.category.title }}
+            </p>
+            <div class="content"><img class="center" src="{{ article.image }}" alt="">
+                <p>{{ article.content | raw }}</p>
+            </div>
+        </div>
+    </section>
+    <section id="commentaires">
+        {% for comment in article.comments %}
+            <div class="comment">
+                <div class="row">
+                    <div class="col-3">
+                        {{ comment.author }}(<small>{{ comment.createdAt | date('d/m/Y à H:i') }}</small>)
+                    </div>
+                    <div class="col">
+                        {{ comment.content | raw }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}

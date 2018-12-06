@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Activities{% endblock %}
+
+{% block body %}
+    <section class="article">
+        {% for article in articles %}
+            <article>
+                <h2>{{ article.title }}</h2>
+                <div class="metadata">Ajoutée le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt | date('H:i') }} dans la region de l\'Ouest dans les Bamboutos</div>
+                <div class="content">
+                    <img src="{{ article.image }}" alt="">
+                    {{ article.content | raw }}
+                    <a href="{{ path('show', {'id' : article.id}) }}" class="btn btn-primary">Lire la suite</a></div>
+            </article>
+        {% endfor %}
+    </section>
+{% endblock %}
